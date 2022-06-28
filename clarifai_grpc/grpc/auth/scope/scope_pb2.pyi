@@ -232,17 +232,16 @@ class _SEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrap
     WorkflowPublications_Add: _S.ValueType  # 119
     WorkflowPublications_Delete: _S.ValueType  # 120
     BulkOperation_Add: _S.ValueType  # 121
-    """TODO(Hemanth): Expose Bulk Operation endpoints only after implementation
-    To write bulk operations to the DB
-    """
+    """To write bulk operations to the DB"""
 
     BulkOperation_Get: _S.ValueType  # 122
-    """To Read Bulk Operations from the DB
-    [(clarfai_exposed) = true];
-    """
+    """To Read Bulk Operations from the DB"""
 
     BulkOperation_Delete: _S.ValueType  # 123
     """To Delete Bulk Operations from the DB"""
+
+    HistoricalUsage_Get: _S.ValueType  # 124
+    """To read historical usage from usage.dashboard_items table"""
 
 class S(_S, metaclass=_SEnumTypeWrapper):
     """Next index: 41
@@ -476,17 +475,16 @@ ModelVersionPublications_Delete: S.ValueType  # 118
 WorkflowPublications_Add: S.ValueType  # 119
 WorkflowPublications_Delete: S.ValueType  # 120
 BulkOperation_Add: S.ValueType  # 121
-"""TODO(Hemanth): Expose Bulk Operation endpoints only after implementation
-To write bulk operations to the DB
-"""
+"""To write bulk operations to the DB"""
 
 BulkOperation_Get: S.ValueType  # 122
-"""To Read Bulk Operations from the DB
-[(clarfai_exposed) = true];
-"""
+"""To Read Bulk Operations from the DB"""
 
 BulkOperation_Delete: S.ValueType  # 123
 """To Delete Bulk Operations from the DB"""
+
+HistoricalUsage_Get: S.ValueType  # 124
+"""To read historical usage from usage.dashboard_items table"""
 
 global___S = S
 

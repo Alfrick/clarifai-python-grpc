@@ -6447,3 +6447,235 @@ class TimeInfo(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["begin_time",b"begin_time","end_time",b"end_time","num_frames",b"num_frames"]) -> None: ...
 global___TimeInfo = TimeInfo
+
+class BulkOperation(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    INPUT_IDS_FIELD_NUMBER: builtins.int
+    SEARCH_FIELD_NUMBER: builtins.int
+    OPERATION_FIELD_NUMBER: builtins.int
+    APP_ID_FIELD_NUMBER: builtins.int
+    STATUS_FIELD_NUMBER: builtins.int
+    PROGRESS_FIELD_NUMBER: builtins.int
+    CREATED_BY_FIELD_NUMBER: builtins.int
+    CREATED_AT_FIELD_NUMBER: builtins.int
+    LAST_MODIFIED_AT_FIELD_NUMBER: builtins.int
+    id: typing.Text
+    """id of the Bulk Operation task"""
+
+    @property
+    def input_ids(self) -> global___InputIDs:
+        """List of input ids to which operation to be applied"""
+        pass
+    @property
+    def search(self) -> global___Search:
+        """A Search(either filter or rank with min value) to allow filtering down the entire app's
+        sub-assets(image, region in image, frame in video, region in frame in video)
+        and perform operation to only the results of this search query. See our search
+        documentation for more details about the search Query message.
+        For eg., filters the asset/sub-asset matching the search and performs specified operation.
+        """
+        pass
+    @property
+    def operation(self) -> global___Operation:
+        """Operation to perform"""
+        pass
+    app_id: typing.Text
+    """Application ID that this Operation was created from"""
+
+    @property
+    def status(self) -> proto.clarifai.api.status.status_pb2.Status:
+        """Status (pending, in-progress, completed, failed) of the operation"""
+        pass
+    @property
+    def progress(self) -> global___Progress:
+        """Progress of an on-going Bulk Operation task"""
+        pass
+    created_by: typing.Text
+    """User id that created this operation"""
+
+    @property
+    def created_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """When the operation was created. We follow the XXXX timestamp
+        format. We use https://www.ietf.org/rfc/rfc3339.txt format:
+        "2006-01-02T15:04:05.999999Z" so you can expect results like
+        the following from the API:
+        "2017-04-11T21:50:50.223962Z"
+        """
+        pass
+    @property
+    def last_modified_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Last time the status got updated"""
+        pass
+    def __init__(self,
+        *,
+        id: typing.Text = ...,
+        input_ids: typing.Optional[global___InputIDs] = ...,
+        search: typing.Optional[global___Search] = ...,
+        operation: typing.Optional[global___Operation] = ...,
+        app_id: typing.Text = ...,
+        status: typing.Optional[proto.clarifai.api.status.status_pb2.Status] = ...,
+        progress: typing.Optional[global___Progress] = ...,
+        created_by: typing.Text = ...,
+        created_at: typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
+        last_modified_at: typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["created_at",b"created_at","input_ids",b"input_ids","input_source",b"input_source","last_modified_at",b"last_modified_at","operation",b"operation","progress",b"progress","search",b"search","status",b"status"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["app_id",b"app_id","created_at",b"created_at","created_by",b"created_by","id",b"id","input_ids",b"input_ids","input_source",b"input_source","last_modified_at",b"last_modified_at","operation",b"operation","progress",b"progress","search",b"search","status",b"status"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["input_source",b"input_source"]) -> typing.Optional[typing_extensions.Literal["input_ids","search"]]: ...
+global___BulkOperation = BulkOperation
+
+class InputIDs(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INPUT_IDS_FIELD_NUMBER: builtins.int
+    @property
+    def input_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]: ...
+    def __init__(self,
+        *,
+        input_ids: typing.Optional[typing.Iterable[typing.Text]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["input_ids",b"input_ids"]) -> None: ...
+global___InputIDs = InputIDs
+
+class Progress(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PROCESSED_FIELD_NUMBER: builtins.int
+    LAST_PROCESSED_ID_FIELD_NUMBER: builtins.int
+    processed: builtins.int
+    last_processed_id: typing.Text
+    def __init__(self,
+        *,
+        processed: builtins.int = ...,
+        last_processed_id: typing.Text = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["last_processed_id",b"last_processed_id","processed",b"processed"]) -> None: ...
+global___Progress = Progress
+
+class Operation(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ADD_CONCEPTS_FIELD_NUMBER: builtins.int
+    DELETE_CONCEPTS_FIELD_NUMBER: builtins.int
+    ADD_METADATA_FIELD_NUMBER: builtins.int
+    DELETE_METADATA_FIELD_NUMBER: builtins.int
+    OVERWRITE_GEO_FIELD_NUMBER: builtins.int
+    DELETE_GEO_FIELD_NUMBER: builtins.int
+    @property
+    def add_concepts(self) -> global___AddConcepts:
+        """Create a new annotation with the provided concept(s) for all the inputs in input source (mentioned above)."""
+        pass
+    @property
+    def delete_concepts(self) -> global___DeleteConcepts:
+        """Remove the matching concept(s) for all the inputs in input source (mentioned above)."""
+        pass
+    @property
+    def add_metadata(self) -> global___AddMetadata:
+        """Add the provided metadata to the input level annotation for all the inputs in input source (mentioned above).
+        If the key(s) already exists, it will overwrite the key(s) with the corresponding new value(s).
+        """
+        pass
+    @property
+    def delete_metadata(self) -> global___DeleteMetadata:
+        """Remove the key, value pairs that match the given metadata from the existing input level Annotations' metadata
+        for all the inputs in input source (mentioned above).
+        """
+        pass
+    @property
+    def overwrite_geo(self) -> global___OverwriteGeo:
+        """Add the provided geo info for all the inputs in input source (mentioned above)."""
+        pass
+    @property
+    def delete_geo(self) -> global___DeleteGeo:
+        """Delete Geo info for all the inputs in input source (mentioned above)."""
+        pass
+    def __init__(self,
+        *,
+        add_concepts: typing.Optional[global___AddConcepts] = ...,
+        delete_concepts: typing.Optional[global___DeleteConcepts] = ...,
+        add_metadata: typing.Optional[global___AddMetadata] = ...,
+        delete_metadata: typing.Optional[global___DeleteMetadata] = ...,
+        overwrite_geo: typing.Optional[global___OverwriteGeo] = ...,
+        delete_geo: typing.Optional[global___DeleteGeo] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["add_concepts",b"add_concepts","add_metadata",b"add_metadata","delete_concepts",b"delete_concepts","delete_geo",b"delete_geo","delete_metadata",b"delete_metadata","operation",b"operation","overwrite_geo",b"overwrite_geo"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["add_concepts",b"add_concepts","add_metadata",b"add_metadata","delete_concepts",b"delete_concepts","delete_geo",b"delete_geo","delete_metadata",b"delete_metadata","operation",b"operation","overwrite_geo",b"overwrite_geo"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["operation",b"operation"]) -> typing.Optional[typing_extensions.Literal["add_concepts","delete_concepts","add_metadata","delete_metadata","overwrite_geo","delete_geo"]]: ...
+global___Operation = Operation
+
+class AddConcepts(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CONCEPTS_FIELD_NUMBER: builtins.int
+    @property
+    def concepts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Concept]: ...
+    def __init__(self,
+        *,
+        concepts: typing.Optional[typing.Iterable[global___Concept]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["concepts",b"concepts"]) -> None: ...
+global___AddConcepts = AddConcepts
+
+class DeleteConcepts(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CONCEPTS_FIELD_NUMBER: builtins.int
+    @property
+    def concepts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Concept]: ...
+    def __init__(self,
+        *,
+        concepts: typing.Optional[typing.Iterable[global___Concept]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["concepts",b"concepts"]) -> None: ...
+global___DeleteConcepts = DeleteConcepts
+
+class AddMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    METADATA_FIELD_NUMBER: builtins.int
+    @property
+    def metadata(self) -> google.protobuf.struct_pb2.Struct:
+        """To handle arbitrary json metadata you can use a struct field:
+        https://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto
+        """
+        pass
+    def __init__(self,
+        *,
+        metadata: typing.Optional[google.protobuf.struct_pb2.Struct] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["metadata",b"metadata"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["metadata",b"metadata"]) -> None: ...
+global___AddMetadata = AddMetadata
+
+class DeleteMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    METADATA_FIELD_NUMBER: builtins.int
+    @property
+    def metadata(self) -> google.protobuf.struct_pb2.Struct:
+        """To handle arbitrary json metadata you can use a struct field:
+        https://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto
+        """
+        pass
+    def __init__(self,
+        *,
+        metadata: typing.Optional[google.protobuf.struct_pb2.Struct] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["metadata",b"metadata"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["metadata",b"metadata"]) -> None: ...
+global___DeleteMetadata = DeleteMetadata
+
+class OverwriteGeo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    GEO_FIELD_NUMBER: builtins.int
+    @property
+    def geo(self) -> global___Geo:
+        """Geo info"""
+        pass
+    def __init__(self,
+        *,
+        geo: typing.Optional[global___Geo] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["geo",b"geo"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["geo",b"geo"]) -> None: ...
+global___OverwriteGeo = OverwriteGeo
+
+class DeleteGeo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    def __init__(self,
+        ) -> None: ...
+global___DeleteGeo = DeleteGeo

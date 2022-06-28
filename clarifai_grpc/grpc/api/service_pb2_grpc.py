@@ -16,7 +16,7 @@ class V2Stub(object):
     """
 
     def __init__(self, channel):
-        from clarifai_grpc.channel.clarifai_channel import wrap_response_deserializer
+    from clarifai_grpc.channel.clarifai_channel import wrap_response_deserializer
         """Constructor.
 
         Args:
@@ -816,6 +816,31 @@ class V2Stub(object):
                 '/clarifai.api.V2/ListTrendingMetricsViews',
                 request_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.ListTrendingMetricsViewsRequest.SerializeToString,
                 response_deserializer=wrap_response_deserializer(proto_dot_clarifai_dot_api_dot_service__pb2.MultiTrendingMetricsViewResponse),
+                )
+        self.PostBulkOperations = channel.unary_unary(
+                '/clarifai.api.V2/PostBulkOperations',
+                request_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.PostBulkOperationsRequest.SerializeToString,
+                response_deserializer=wrap_response_deserializer(proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse),
+                )
+        self.ListBulkOperations = channel.unary_unary(
+                '/clarifai.api.V2/ListBulkOperations',
+                request_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.ListBulkOperationsRequest.SerializeToString,
+                response_deserializer=wrap_response_deserializer(proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse),
+                )
+        self.GetBulkOperation = channel.unary_unary(
+                '/clarifai.api.V2/GetBulkOperation',
+                request_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.GetBulkOperationRequest.SerializeToString,
+                response_deserializer=wrap_response_deserializer(proto_dot_clarifai_dot_api_dot_service__pb2.SingleBulkOperationsResponse),
+                )
+        self.CancelBulkOperations = channel.unary_unary(
+                '/clarifai.api.V2/CancelBulkOperations',
+                request_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.CancelBulkOperationRequest.SerializeToString,
+                response_deserializer=wrap_response_deserializer(proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse),
+                )
+        self.DeleteBulkOperations = channel.unary_unary(
+                '/clarifai.api.V2/DeleteBulkOperations',
+                request_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.DeleteBulkOperationRequest.SerializeToString,
+                response_deserializer=wrap_response_deserializer(proto_dot_clarifai_dot_api_dot_status_dot_status__pb2.BaseResponse),
                 )
         self.GetDatasetInputsSearchAddJob = channel.unary_unary(
                 '/clarifai.api.V2/GetDatasetInputsSearchAddJob',
@@ -1998,6 +2023,43 @@ class V2Servicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def PostBulkOperations(self, request, context):
+        """Perform bulk operations on a list of inputs based on input source.
+        Operation include add, update, delete of concepts, metadata and geo data.
+        This is an Asynchronous process. Use ListBulkOperations or GetBulkOperation to check the status.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListBulkOperations(self, request, context):
+        """List all the bulk operations
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetBulkOperation(self, request, context):
+        """Get the bulk operation details by ID
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CancelBulkOperations(self, request, context):
+        """Cancel one or more bulk operations
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteBulkOperations(self, request, context):
+        """delete one or more terminated bulk operations
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetDatasetInputsSearchAddJob(self, request, context):
         """Get a specific job.
         """
@@ -2802,6 +2864,31 @@ def add_V2Servicer_to_server(servicer, server):
                     servicer.ListTrendingMetricsViews,
                     request_deserializer=proto_dot_clarifai_dot_api_dot_service__pb2.ListTrendingMetricsViewsRequest.FromString,
                     response_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.MultiTrendingMetricsViewResponse.SerializeToString,
+            ),
+            'PostBulkOperations': grpc.unary_unary_rpc_method_handler(
+                    servicer.PostBulkOperations,
+                    request_deserializer=proto_dot_clarifai_dot_api_dot_service__pb2.PostBulkOperationsRequest.FromString,
+                    response_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse.SerializeToString,
+            ),
+            'ListBulkOperations': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListBulkOperations,
+                    request_deserializer=proto_dot_clarifai_dot_api_dot_service__pb2.ListBulkOperationsRequest.FromString,
+                    response_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse.SerializeToString,
+            ),
+            'GetBulkOperation': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetBulkOperation,
+                    request_deserializer=proto_dot_clarifai_dot_api_dot_service__pb2.GetBulkOperationRequest.FromString,
+                    response_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.SingleBulkOperationsResponse.SerializeToString,
+            ),
+            'CancelBulkOperations': grpc.unary_unary_rpc_method_handler(
+                    servicer.CancelBulkOperations,
+                    request_deserializer=proto_dot_clarifai_dot_api_dot_service__pb2.CancelBulkOperationRequest.FromString,
+                    response_serializer=proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse.SerializeToString,
+            ),
+            'DeleteBulkOperations': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteBulkOperations,
+                    request_deserializer=proto_dot_clarifai_dot_api_dot_service__pb2.DeleteBulkOperationRequest.FromString,
+                    response_serializer=proto_dot_clarifai_dot_api_dot_status_dot_status__pb2.BaseResponse.SerializeToString,
             ),
             'GetDatasetInputsSearchAddJob': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDatasetInputsSearchAddJob,
@@ -5524,6 +5611,91 @@ class V2(object):
         return grpc.experimental.unary_unary(request, target, '/clarifai.api.V2/ListTrendingMetricsViews',
             proto_dot_clarifai_dot_api_dot_service__pb2.ListTrendingMetricsViewsRequest.SerializeToString,
             proto_dot_clarifai_dot_api_dot_service__pb2.MultiTrendingMetricsViewResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def PostBulkOperations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/clarifai.api.V2/PostBulkOperations',
+            proto_dot_clarifai_dot_api_dot_service__pb2.PostBulkOperationsRequest.SerializeToString,
+            proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListBulkOperations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/clarifai.api.V2/ListBulkOperations',
+            proto_dot_clarifai_dot_api_dot_service__pb2.ListBulkOperationsRequest.SerializeToString,
+            proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetBulkOperation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/clarifai.api.V2/GetBulkOperation',
+            proto_dot_clarifai_dot_api_dot_service__pb2.GetBulkOperationRequest.SerializeToString,
+            proto_dot_clarifai_dot_api_dot_service__pb2.SingleBulkOperationsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CancelBulkOperations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/clarifai.api.V2/CancelBulkOperations',
+            proto_dot_clarifai_dot_api_dot_service__pb2.CancelBulkOperationRequest.SerializeToString,
+            proto_dot_clarifai_dot_api_dot_service__pb2.MultiBulkOperationsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteBulkOperations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/clarifai.api.V2/DeleteBulkOperations',
+            proto_dot_clarifai_dot_api_dot_service__pb2.DeleteBulkOperationRequest.SerializeToString,
+            proto_dot_clarifai_dot_api_dot_status_dot_status__pb2.BaseResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
